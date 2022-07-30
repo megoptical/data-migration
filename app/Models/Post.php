@@ -45,8 +45,8 @@ class Post extends Model
         $data['deleted_at'] = null;
         $data['language'] = $post->lang_id;
         if (!self::where('title','LIKE', $post->title)->first()) {
-        }
         self::create($data);
+        }
     }
     public static function newPosts()
     {
