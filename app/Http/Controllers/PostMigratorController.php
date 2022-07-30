@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Models\OldUser;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class UsersController extends Controller
+class PostMigratorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,14 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = OldUser::getUsers();
-
-        return $users;
+        return $posts = Post::getPosts();
+        foreach ($posts as $post) {
+            if($post->keywords) {
+                return $post;
+            }
+            Post::createPost($post);
+        }
+        return Post::newPosts();
     }
 
     /**

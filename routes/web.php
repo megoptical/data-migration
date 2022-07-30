@@ -1,7 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\PostMigratorController;
 use App\Http\Controllers\Admin\InvoicesController;
 
 /*
@@ -19,13 +21,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::resource('users', UsersController::class);
-
-
-
+Route::resource('posts', PostMigratorController::class);
 Auth::routes();
-Route::get('/reports/invoices', [InvoicesController::class,'request'])->name('reports.invoices.request');
-Route::post('/reports/invoices', [InvoicesController::class,'processInvoices'])->name('processInvoices');
-Route::get('/reports/invoices/export', [InvoicesController::class,'exportInvoices'])->name('reports.invoices.download');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

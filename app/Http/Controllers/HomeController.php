@@ -26,13 +26,5 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $startDate = "2021-04-01";
-        $endDate = "2021-07-31";
-
-        $invoices = Invoice::getJointInvoices($startDate, $endDate);
-        $amount = Invoice::getJointAmount($startDate, $endDate);
-        $count = Invoice::getJointCount($startDate, $endDate);
-        return $invoices;
-        return view('home');
     }
 }
